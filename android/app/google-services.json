@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "851142011498",
+    "project_id": "mobutask",
+    "storage_bucket": "mobutask.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:851142011498:android:f4056c64b629565e9db813",
+        "android_client_info": {
+          "package_name": "com.mobutask"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "851142011498-k3ubnfrvl91cl65v8s1sr9l2tjj517pr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mobutask",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "851142011498-bqp26bvg9q759d91t6phouqfdl90jook.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1pbq8rp6kTTSmtQpCPCXCsMqbsuqsdYk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "851142011498-bqp26bvg9q759d91t6phouqfdl90jook.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

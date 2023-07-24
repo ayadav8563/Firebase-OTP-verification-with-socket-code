@@ -11,7 +11,7 @@ const HomeScreen = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [otpLoading, setOtpLoading] = useState(false);
     const [mobile, setMobile] = useState('');
-    const [sentOtp, setSentOtp] = useState(false);
+    const [isSentOtp, setIsSentOtp] = useState(false);
     const [confirmation, setConfirmation] = useState();
     const [otp, setOtp] = useState('');
     const [isVerified, setIsVerified] = useState(false);
@@ -22,6 +22,14 @@ const HomeScreen = () => {
     useEffect(() => {
         getData();
     }, [])
+
+    useEffect(() => {
+        if(page === 0 && showData?.length === 0){
+            let newData = realData.filter(item => item.id < 11);        
+            setShowData([...newData]);
+            setPage(p => p + 1)
+        }
+    }, [realData])
 
     const getData = () => {
         dispatch(getImageAction());
@@ -39,6 +47,7 @@ const HomeScreen = () => {
     };
 
     const sendOTP = () => {
+        if(mobile.length > 0){
         setOtpLoading(true)
         auth()
             .signInWithPhoneNumber(mobile)
@@ -46,15 +55,19 @@ const HomeScreen = () => {
                 setConfirmation(confirmation);
                 alert('OTP send successfully. Please wait.')
                 setOtpLoading(false);
-                setSentOtp(true);
+                setIsSentOtp(true);
             })
             .catch((error) => {
                 alert(error.message)
                 setOtpLoading(false)
             });
+        } else {
+            alert('Please enter mobile number.')
+        }
     }
 
     const verifyOtp = () => {
+        if(otp?.length > 0){
         setOtpLoading(true);
         confirmation
             .confirm(otp)
@@ -67,6 +80,9 @@ const HomeScreen = () => {
                 alert(error.message)
                 setOtpLoading(false);
             });
+        } else {
+            alert('Please enter otp.')
+        }
     }
 
     const onRefresh = React.useCallback(() => {
@@ -119,24 +135,23 @@ const HomeScreen = () => {
                                 placeholder="Enter Phone number with + country code"
                                 placeholderTextColor={'black'} />
                         </View>
-                        <TouchableOpacity style={{
+                        <TouchableOpacity onPress={sendOTP} disabled={isSentOtp} style={{
                             backgroundColor: 'blue',
                             paddingVertical: 6,
                             paddingHorizontal: 24,
                             borderRadius: 8,
                             marginVertical: 10,
                             alignSelf: 'center'
-                        }}>
+                        }}> 
                             <Text
                                 style={{
                                     textAlign: 'center',
                                     color: 'white',
                                     fontSize: 16,
                                     fontWeight: 'bold',
-                                }}
-                                onPress={sendOTP}>send OTP</Text>
+                                }}>send OTP</Text>
                         </TouchableOpacity>
-                        {sentOtp ? <View>
+                        {isSentOtp ? <View>
                             <View>
                                 <TextInput
                                     value={otp}

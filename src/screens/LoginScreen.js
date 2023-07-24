@@ -64,7 +64,7 @@ const LoginScreen = (props) => {
                     <Text style={styles.subtitle}>go back to Signup Screen</Text>
                 </TouchableOpacity>
             </View>
-            {loading ? (
+            {loading == 'loading' ? (
                 <View style={{ position: 'absolute', height: '100%', width: '100%', justifyContent: 'center', alignSelf: 'center', zIndex: 2 }}>
                     <ActivityIndicator size={'large'} />
                 </View>
